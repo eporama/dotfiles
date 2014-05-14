@@ -18,6 +18,7 @@ function sd {
   killall Finder
 }
 
+alias GET='curl -XGET -s -D - -o /dev/null'
 function db-import { size=$(gzip -l $1 | awk 'NR==2 { print $2 }') && gzip -d -c $1 | pv -s $size | mysql -u root $2 ; }
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -36,3 +37,4 @@ function bastion { mywik ; }
 # set ahtools autocomplete
 complete -W '$(/Users/erik.peterson/Acquia/Support-Tools/aht --autocomplete)' aht
 
+export PATH="$HOME/.composer/vendor/bin:$PATH"
