@@ -3,9 +3,21 @@
 	email = erik.peterson@acquia.com
 [core]
 	excludesfile = /Users/erik.peterson/.gitignore
+[color]
+	ui = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[push]
+	default = matching
+[alias]
+  la = "!git config -l | grep alias | cut -c 7-"
+  graph = log --all --graph --decorate --oneline -n30
+  le = log --oneline --decorate
+  sync = "!f() { git checkout master && git fetch --all && git rebase upstream/master && git push -f origin master; }; f"
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate
+  ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --date=relative
+  le = log --oneline --decorate
