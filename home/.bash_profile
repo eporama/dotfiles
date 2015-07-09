@@ -1,7 +1,7 @@
 # set git completion
 #source ~/.git-completion.sh
 
-PS1="\W\$(__git_ps1) \$ "
+PS1="\n\W\$(__git_ps1) \$ "
 
 if [ -x /usr/libexec/path_helper ]; then
 	PATH=""
@@ -86,3 +86,7 @@ apdsh() {
   shift $((OPTIND-1))
 }
 
+mySvnSsh() {
+  ssh -o ProxyCommand="ssh -F ~/.ssh/ah_config bastion nc $2.prod.hosting.acquia.com 40506" $1@$2
+}
+alias sshsvn=mySvnSsh

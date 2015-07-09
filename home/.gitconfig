@@ -2,7 +2,7 @@
 	name = Erik Peterson
 	email = erik.peterson@acquia.com
 [core]
-	excludesfile = /Users/erik.peterson/.gitignore
+	excludesfile = /opt/boxen/config/git/gitignore
 [color]
 	ui = true
 [difftool "sourcetree"]
