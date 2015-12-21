@@ -72,15 +72,15 @@ apdsh() {
     else
       echo "Running $command against all $type servers on $sitename :>"
       filter=$type
-      if [ $type == 'web' ] || [ $type == 'staging' ] || [ $type == 'ded' ] || [ $type == 'managed' ]; then
+      if [ $type == 'web' ] || [ $type == 'staging' ] || [ $type == 'ded' ] || [ $type == 'managed' ] || [ $type == 'free' ]; then
         filter='web'
-        servermatch='(web|staging|ded|managed)'
+        servermatch='(web|staging|ded|managed|free)'
       fi
       if [ $type == 'db' ]; then
         filter='db'
-        servermatch='(ded|fsdb|fsdbmesh|dbmaster)'
+        servermatch='(ded|fsdb|fsdbmesh|dbmaster|free)'
       fi
-      pdsh -w `aht @$sitename --show=$filter | awk {'print $1'} | egrep "^${servermatch}" | sed -e 's/^[ \t]*//' | tr '\n' ','` $command
+      pdsh -w `aht @$sitename s:i --show=$filter | awk {'print $1'} | egrep "^${servermatch}" | sed -e 's/^[ \t]*//' | tr '\n' ','` $command
     fi
 
   shift $((OPTIND-1))
