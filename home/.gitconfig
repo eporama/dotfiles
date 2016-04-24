@@ -1,18 +1,19 @@
 [user]
-	name = Erik Peterson
-	email = erik.peterson@acquia.com
+  name = Erik Peterson
+  email = erik.peterson@acquia.com
 [core]
-	excludesfile = /opt/boxen/config/git/gitignore
+  excludesfile = /Users/erik.peterson/.gitignore_global
+  pager = /usr/bin/less -+$LESS -FRX
 [color]
-	ui = true
+  ui = true
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 [push]
-	default = matching
+  default = matching
 [alias]
   la = "!git config -l | grep alias | cut -c 7-"
   graph = log --all --graph --decorate --oneline -n30
@@ -21,9 +22,12 @@
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate
   ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --date=relative
   le = log --oneline --decorate
+  trim = "!f() { for GIT_TRIM_BRANCH in $(git branch --merged | egrep -v \"(\\* | master$)\" ); do git branch -d \"$GIT_TRIM_BRANCH\"; done; }; f"
 
 [hub]
-protocol = https
+  protocol = https
 
-[credential]
-helper = /opt/boxen/bin/boxen-git-credential
+[pager]
+  log = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | /usr/bin/less -+$LESS -FRX
+  diff = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | /usr/bin/less -+$LESS -FRX
+  show = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | /usr/bin/less -+$LESS -FRX
