@@ -29,6 +29,7 @@ if [ -d "/Users/erik.peterson/Acquia/Support-Tools/bin" ] ; then
 fi
 export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
 export PATH="/Users/erik.peterson/.phpenv/bin:$PATH"
+export PATH="/Users/erik.peterson/Library/Python/2.7/bin:$PATH"
 eval "$(phpenv init -)"
 
 # include AH profile
