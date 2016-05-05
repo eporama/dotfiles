@@ -24,12 +24,12 @@ function sd {
 function db-import { size=$(gzip -l $1 | awk 'NR==2 { print $2 }') && gzip -d -c $1 | pv -s $size | mysql -u root $2 ; }
 
 # set PATH so it includes Support-Tools bin, composer and phpenv
-if [ -d "/Users/erik.peterson/Acquia/Support-Tools/bin" ] ; then
-    export PATH="/Users/erik.peterson/Acquia/Support-Tools/bin:$PATH"
+if [ -d "$HOME/Acquia/Support-Tools/bin" ] ; then
+    export PATH="$HOME/Acquia/Support-Tools/bin:$PATH"
 fi
 export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
-export PATH="/Users/erik.peterson/.phpenv/bin:$PATH"
-export PATH="/Users/erik.peterson/Library/Python/2.7/bin:$PATH"
+export PATH="$HOME/.phpenv/bin:$PATH"
+export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 eval "$(phpenv init -)"
 
 # include AH profile
