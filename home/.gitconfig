@@ -4,6 +4,8 @@
 [core]
   excludesfile = /Users/erik.peterson/.gitignore_global
   pager = /usr/bin/less -+$LESS -FRX
+[uploadArchive]
+  allowUnreachable = true
 [color]
   ui = true
 [difftool "sourcetree"]
@@ -31,3 +33,5 @@
   log = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | /usr/bin/less -+$LESS -FRX
   diff = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | /usr/bin/less -+$LESS -FRX
   show = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | /usr/bin/less -+$LESS -FRX
+[github]
+	user = eporama
