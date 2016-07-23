@@ -55,3 +55,29 @@ powerline_path=$(python -c 'import pkgutil; print pkgutil.get_loader("powerline"
     # Setup your normal PS1 here.
     PS1="\n\W\$(__git_ps1) \$ "
   fi
+
+function blt() {
+  if [ "`git rev-parse --show-cdup 2> /dev/null`" != "" ]; then
+    GIT_ROOT=$(git rev-parse --show-cdup)
+  else
+    GIT_ROOT="."
+  fi
+
+  if [ -f "$GIT_ROOT/blt.sh" ]; then
+    $GIT_ROOT/blt.sh "$@"
+  else
+    echo "You must run this command from within a BLT-generated project repository."
+  fi
+}
+
+# start up rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+function livegit() {
+while :
+do
+    clear
+    git --no-pager log --graph --pretty=oneline --abbrev-commit --decorate --all $*
+    sleep 1
+done
+}
