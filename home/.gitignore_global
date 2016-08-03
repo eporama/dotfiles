@@ -1,0 +1,5 @@
+.idea
+creds.json
+*.sq3
+.php-version
+.DS_Store
