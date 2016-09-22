@@ -56,20 +56,6 @@ powerline_path=$(python -c 'import pkgutil; print pkgutil.get_loader("powerline"
     PS1="\n\W\$(__git_ps1) \$ "
   fi
 
-function blt() {
-  if [ "`git rev-parse --show-cdup 2> /dev/null`" != "" ]; then
-    GIT_ROOT=$(git rev-parse --show-cdup)
-  else
-    GIT_ROOT="."
-  fi
-
-  if [ -f "$GIT_ROOT/blt.sh" ]; then
-    $GIT_ROOT/blt.sh "$@"
-  else
-    echo "You must run this command from within a BLT-generated project repository."
-  fi
-}
-
 # start up rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -84,3 +70,17 @@ done
 
 export LS_COLORS="no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:ex=00;35"
 
+
+function blt() {
+  if [ "`git rev-parse --show-cdup 2> /dev/null`" != "" ]; then
+    GIT_ROOT=$(git rev-parse --show-cdup)
+  else
+    GIT_ROOT="."
+  fi
+
+  if [ -f "$GIT_ROOT/vendor/bin/blt" ]; then
+    $GIT_ROOT/vendor/bin/blt "$@"
+  else
+    echo "You must run this command from within a BLT-generated project repository."
+  fi
+}
