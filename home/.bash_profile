@@ -1,6 +1,3 @@
-# set git completion
-#source /usr/local/Cellar/git/2.8.1/.git-completion.sh
-
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
