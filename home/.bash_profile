@@ -1,3 +1,6 @@
+# add all keychain saved keys
+/usr/bin/ssh-add -A
+
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
