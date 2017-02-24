@@ -25,6 +25,8 @@ export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
 export PATH="$HOME/.phpenv/bin:$PATH"
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 export HOMEBREW_EDITOR="/usr/local/bin/atom"
+export EDITOR="/usr/bin/vi"
+
 eval "$(phpenv init -)"
 
 # include AH profile
