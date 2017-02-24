@@ -47,6 +47,7 @@ alias assh='ssh -F $HOME/.ssh/ah_config'
 alias pj='python -m json.tool'
 alias GET='curl -XGET -s -D - -o /dev/null'
 alias ocurl='curl -vvs -u erik.peterson:ABC1234'
+alias tbl='column -s $'\''\t'\'' -t'
 
 powerline_path=$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)
   if [[ "$powerline_path" != "" ]]; then
