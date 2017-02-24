@@ -34,6 +34,9 @@ if [ -f ~/.ah_profile ]; then
   . ~/.ah_profile
 fi
 
+# set our default realms for aht
+#export AHSTAGES="prod,devcloud,enterprise-g1,wmg-egardens,umg-egardens,trex-prod,network"
+
 # New svn command to allow Support Tools config to have svn ssh command uninterrupted
 mySvnSsh() {
   ssh -o ProxyCommand="ssh -F ~/.ssh/ah_config bastion nc $2.prod.hosting.acquia.com 40506" $1@$2
