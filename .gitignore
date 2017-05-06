@@ -1,3 +1,7 @@
-home/.config/git
-home/.config/psysh
-home/.config/git*
+.config/git
+.config/psysh
+.config/git*
+.config/hub
+.config/code-review
+.config/configstore
+.config/filezilla
