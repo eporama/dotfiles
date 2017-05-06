@@ -46,7 +46,7 @@
   trim = "!f() { for GIT_TRIM_BRANCH in $(git branch --merged | egrep -v \"(\\* | master$)\" ); do git branch -d \"$GIT_TRIM_BRANCH\"; done; }; f"
 
 [hub]
-  protocol = https
+  protocol = git
 
 [pager]
   log = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | /usr/bin/less -+$LESS -FRX
