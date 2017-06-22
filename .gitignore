@@ -1,3 +1,4 @@
+.config/*cloudapi.conf
 .config/git
 .config/psysh
 .config/git*
