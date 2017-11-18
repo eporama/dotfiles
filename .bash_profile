@@ -61,6 +61,9 @@ powerline_path=$(python -c 'import pkgutil; print pkgutil.get_loader("powerline"
 # start up rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+function wtree() {
+while :; do clear; tree -a; sleep 1; done
+}
 function livegit() {
 while :
 do
@@ -86,3 +89,5 @@ function blt() {
     echo "You must run this command from within a BLT-generated project repository."
   fi
 }
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
