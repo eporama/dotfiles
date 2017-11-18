@@ -45,6 +45,13 @@
   le = log --oneline --decorate
   trim = "!f() { for GIT_TRIM_BRANCH in $(git branch --merged | egrep -v \"(\\* | master$)\" ); do git branch -d \"$GIT_TRIM_BRANCH\"; done; }; f"
 
+  acquia-github-remote = "!f() { git remote -v | grep -m 1 \"github.com:acquia/\" | cut -f1 ; }; f"
+  last-release = "!f() { git ls-remote --tags $(git acquia-github-remote) release-* supportcomm-release-* 201?-??-??* v?.*.* v??.*.* | cut -f2  | sort | tail -n1 ; }; f"
+  release-contribs = "!f() { git log --oneline --no-merges --pretty=format:\"%an\" $(git last-release)..master | sort -u |  awk '{print}' ORS=', ' | sed -e 's/..$//' ; }; f"
+  release-commits = "!f() { git log --oneline --no-merges --pretty=format:\"%s\" $(git last-release)..master | sed -e 's/^/  * /'; }; f"
+  release-tickets = "!f() { git release-commits | grep -Eo '[A-Z]+-[0-9]+' | xargs | sed -e 's# #%2C#g;s#^#https://backlog.acquia.com/issues/?jql=key%20in%20(#;s#$#)#'; }; f"
+  release-notes = "!f() { echo 'This release includes the following contributions by '$(git release-contribs)':' ; git release-commits ; echo; echo 'View in JIRA: ' $(git release-tickets) ; echo ; echo '[Previous release:' $(git last-release)']' ; echo ; }; f"
+
 [hub]
   protocol = git
 
