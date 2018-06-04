@@ -23,6 +23,7 @@ function db-import { size=$(gzip -l $1 | awk 'NR==2 { print $2 }') && gzip -d -c
 # set PATH so it includes Support-Tools bin, composer and phpenv
 export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
 export PATH="$HOME/.phpenv/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 export HOMEBREW_EDITOR="/usr/local/bin/atom"
 export EDITOR="/usr/bin/vi"
@@ -50,14 +51,13 @@ alias ocurl='curl -vvs -u erik.peterson:ABC1234'
 alias tbl='column -s $'\''\t'\'' -t'
 alias please='sudo'
 
-powerline_path=$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)
-  if [[ "$powerline_path" != "" ]]; then
-    source ${powerline_path}/bindings/bash/powerline.sh
-  else
-    # Setup your normal PS1 here.
-    PS1="\n\W\$(__git_ps1) \$ "
-  fi
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
 
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
 # start up rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -87,7 +87,9 @@ function blt() {
     $GIT_ROOT/vendor/bin/blt "$@"
   else
     echo "You must run this command from within a BLT-generated project repository."
+    return 1
   fi
 }
+
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
