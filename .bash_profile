@@ -45,6 +45,7 @@ mySvnSsh() {
 alias sshsvn=mySvnSsh
 
 alias assh='ssh -F $HOME/.ssh/ah_config'
+alias ascp='scp -F $HOME/.ssh/ah_config'
 alias pj='python -m json.tool'
 alias GET='curl -XGET -s -D - -o /dev/null'
 alias ocurl='curl -vvs -u erik.peterson:ABC1234'
