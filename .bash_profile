@@ -21,8 +21,10 @@ function sd {
 function db-import { size=$(gzip -l $1 | awk 'NR==2 { print $2 }') && gzip -d -c $1 | pv -s $size | mysql -u root $2 ; }
 
 # set PATH so it includes Support-Tools bin, composer and phpenv
+export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
-#export PATH="$HOME/.phpenv/bin:$PATH"
+export PATH="/usr/local/opt/php@7.2/bin:$PATH"
+export PATH="/usr/local/opt/php@7.2/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 export HOMEBREW_EDITOR="/usr/local/bin/atom"
@@ -59,8 +61,6 @@ function _update_ps1() {
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
-# start up rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 function wtree() {
 while :; do clear; tree -a; sleep 1; done
@@ -75,22 +75,3 @@ done
 }
 
 export LS_COLORS="no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:ex=00;35"
-
-
-function blt() {
-  if [ "`git rev-parse --show-cdup 2> /dev/null`" != "" ]; then
-    GIT_ROOT=$(git rev-parse --show-cdup)
-  else
-    GIT_ROOT="."
-  fi
-
-  if [ -f "$GIT_ROOT/vendor/bin/blt" ]; then
-    $GIT_ROOT/vendor/bin/blt "$@"
-  else
-    echo "You must run this command from within a BLT-generated project repository."
-    return 1
-  fi
-}
-
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
