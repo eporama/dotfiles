@@ -23,31 +23,16 @@ function db-import { size=$(gzip -l $1 | awk 'NR==2 { print $2 }') && gzip -d -c
 # set PATH so it includes Support-Tools bin, composer and phpenv
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
-#export PATH="/usr/local/opt/php@7.1/bin:$PATH"
-#export PATH="/usr/local/opt/php@7.1/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 export HOMEBREW_EDITOR="/usr/local/bin/atom"
 export EDITOR="/usr/bin/vi"
-
-#eval "$(phpenv init -)"
 
 # include AH profile
 if [ -f ~/.ah_profile ]; then
   . ~/.ah_profile
 fi
 
-# set our default realms for aht
-#export AHSTAGES="prod,devcloud,enterprise-g1,wmg-egardens,umg-egardens,trex-prod,network"
-
-# New svn command to allow Support Tools config to have svn ssh command uninterrupted
-mySvnSsh() {
-  ssh -o ProxyCommand="ssh -F ~/.ssh/ah_config bastion nc $2.prod.hosting.acquia.com 40506" $1@$2
-}
-alias sshsvn=mySvnSsh
-
-alias assh='ssh -F $HOME/.ssh/ah_config'
-alias ascp='scp -F $HOME/.ssh/ah_config'
 alias pj='python -m json.tool'
 alias GET='curl -XGET -s -D - -o /dev/null'
 alias ocurl='curl -vvs -u erik.peterson:ABC1234'
