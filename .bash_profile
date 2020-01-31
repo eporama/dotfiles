@@ -79,3 +79,25 @@ export LS_COLORS="no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:ex
 export PATH="$HOME/.phpenv/bin:$PATH"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+eval "$(phpenv init -)"
+function blt() {
+  if [[ ! -z ${AH_SITE_ENVIRONMENT} ]]; then
+    PROJECT_ROOT="/var/www/html/${AH_SITE_GROUP}.${AH_SITE_ENVIRONMENT}"
+  elif [ "`git rev-parse --show-cdup 2> /dev/null`" != "" ]; then
+    PROJECT_ROOT=$(git rev-parse --show-cdup)
+  else
+    PROJECT_ROOT="."
+  fi
+
+  if [ -f "$PROJECT_ROOT/vendor/bin/blt" ]; then
+    $PROJECT_ROOT/vendor/bin/blt "$@"
+
+  # Check for local BLT.
+  elif [ -f "./vendor/bin/blt" ]; then
+    ./vendor/bin/blt "$@"
+
+  else
+    echo "You must run this command from within a BLT-generated project."
+    return 1
+  fi
+}
