@@ -23,6 +23,7 @@ function db-import { size=$(gzip -l $1 | awk 'NR==2 { print $2 }') && gzip -d -c
 # set PATH so it includes Support-Tools bin, composer and phpenv
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
+export PATH="$HOME/.phpenv/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 export HOMEBREW_EDITOR="/usr/local/bin/atom"
