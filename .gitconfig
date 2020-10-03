@@ -61,3 +61,5 @@
   show = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | /usr/bin/less -+$LESS -FRX
 [github]
 	user = eporama
+[pull]
+	rebase = false

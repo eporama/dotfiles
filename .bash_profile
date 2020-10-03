@@ -28,6 +28,7 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 export HOMEBREW_EDITOR="/usr/local/bin/atom"
 export EDITOR="/usr/bin/vi"
+export PATH="$HOME/.symfony/bin:$PATH"
 
 # include AH profile
 if [ -f ~/.ah_profile ]; then
