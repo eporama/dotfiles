@@ -89,3 +89,4 @@ function blt() {
     return 1
   fi
 }
+export BASH_SILENCE_DEPRECATION_WARNING=1
