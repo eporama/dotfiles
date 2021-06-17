@@ -1,6 +1,6 @@
 [user]
-  name = Erik Peterson
-  email = erik.peterson@acquia.com
+	name = Erik Peterson
+	email = erik.peterson@acquia.com
 [core]
   excludesfile = /Users/erik.peterson/.gitignore_global
   pager = /usr/bin/less -+$LESS -FRX
@@ -63,3 +63,5 @@
 	user = eporama
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main

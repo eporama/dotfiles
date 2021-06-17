@@ -22,8 +22,8 @@ function db-import { size=$(gzip -l $1 | awk 'NR==2 { print $2 }') && gzip -d -c
 
 # set PATH so it includes Support-Tools bin, composer and phpenv
 export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="$HOME/.phpenv/bin:vendor/bin:../vendor/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
-export PATH="$HOME/.phpenv/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 export HOMEBREW_EDITOR="/usr/local/bin/atom"
@@ -63,7 +63,6 @@ done
 
 export LS_COLORS="no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:ex=00;35"
 
-export PATH="$HOME/.phpenv/bin:vendor/bin:../vendor/bin:$PATH"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export COMPOSER_MEMORY_LIMIT=-1
 
@@ -89,3 +88,12 @@ function blt() {
     return 1
   fi
 }
+
+function sslcheck () {
+  echo | openssl s_client -connect $1:443 2>/dev/null | openssl x509 -text -noout | egrep "DNS|Not [Before|After]" | sed -e 's/^[[:space:]]*//'
+}
+
+function notify() {
+v=$(acli api:notifications:find $1| jq -r '.status'); while [ $v != "completed" ]; do echo -n "not yet: "; date; v=$(acli api:notifications:find $1| jq -r '.status');sleep 60;done; echo "done"
+}
+. "/Users/erik.peterson/.acme.sh/acme.sh.env"
