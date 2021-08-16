@@ -1,6 +1,4 @@
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 if [ -x /usr/libexec/path_helper ]; then
 	PATH=""
@@ -20,7 +18,7 @@ function sd {
 
 function db-import { size=$(gzip -l $1 | awk 'NR==2 { print $2 }') && gzip -d -c $1 | pv -s $size | mysql -u root $2 ; }
 
-# set PATH so it includes Support-Tools bin, composer and phpenv
+# set PATH so it includes Support-Tools bin, composer
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/.phpenv/bin:vendor/bin:../vendor/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
