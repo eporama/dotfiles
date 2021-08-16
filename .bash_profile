@@ -97,4 +97,4 @@ function sslcheck () {
 function notify() {
 v=$(acli api:notifications:find $1| jq -r '.status'); while [ $v != "completed" ]; do echo -n "not yet: "; date; v=$(acli api:notifications:find $1| jq -r '.status');sleep 60;done; echo "done"
 }
-. "/Users/erik.peterson/.acme.sh/acme.sh.env"
+[[ -r "/Users/erik.peterson/.acme.sh/acme.sh.env" ]] && . "/Users/erik.peterson/.acme.sh/acme.sh.env"
