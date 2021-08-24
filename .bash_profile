@@ -60,7 +60,7 @@ done
 }
 
 function sslcheck() {
-  echo "" | openssl s_client -connect $@:443 -servername $@ 2> /dev/null |  openssl x509 -noout  -dates -ext subjectAltName
+  echo "" | openssl s_client -connect $@:443 -servername $@ 2> /dev/null |  openssl x509 -noout  -dates -ext subjectAltName | egrep "DNS|not[Before|After]" | sed -e 's/^[[:space:]]*//'
 }
 export LS_COLORS="no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:ex=00;35"
 
@@ -88,10 +88,6 @@ function blt() {
     echo "You must run this command from within a BLT-generated project."
     return 1
   fi
-}
-
-function sslcheck () {
-  echo | openssl s_client -connect $1:443 2>/dev/null | openssl x509 -text -noout | egrep "DNS|Not [Before|After]" | sed -e 's/^[[:space:]]*//'
 }
 
 function notify() {
