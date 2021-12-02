@@ -91,6 +91,6 @@ function blt() {
 }
 
 function notify() {
-v=$(acli api:notifications:find $1| jq -r '.status'); while [ $v != "completed" ]; do echo -n "not yet: "; date; v=$(acli api:notifications:find $1| jq -r '.status');sleep 60;done; echo "done"
+v=$(acli api:notifications:find $1| jq -r '.status'); while [ $v == "in-progress" ]; do echo -n "not yet: "; date; v=$(acli api:notifications:find $1| jq -r '.status');sleep 60;done; echo "${v}"
 }
 [[ -r "/Users/erik.peterson/.acme.sh/acme.sh.env" ]] && . "/Users/erik.peterson/.acme.sh/acme.sh.env"
