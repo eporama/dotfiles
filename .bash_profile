@@ -1,4 +1,4 @@
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 if [ -x /usr/libexec/path_helper ]; then
 	PATH=""
@@ -19,11 +19,9 @@ function sd {
 function db-import { size=$(gzip -l $1 | awk 'NR==2 { print $2 }') && gzip -d -c $1 | pv -s $size | mysql -u root $2 ; }
 
 # set PATH so it includes Support-Tools bin, composer
-export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="$HOME/.phpenv/bin:vendor/bin:../vendor/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 export HOMEBREW_EDITOR="/usr/local/bin/atom"
 export EDITOR="/usr/bin/vi"
 export PATH="$HOME/.symfony/bin:$PATH"
@@ -94,3 +92,4 @@ function notify() {
 v=$(acli api:notifications:find $1| jq -r '.status'); while [ $v == "in-progress" ]; do echo -n "not yet: "; date; v=$(acli api:notifications:find $1| jq -r '.status');sleep 60;done; echo "${v}"
 }
 [[ -r "/Users/erik.peterson/.acme.sh/acme.sh.env" ]] && . "/Users/erik.peterson/.acme.sh/acme.sh.env"
+eval "$(/opt/homebrew/bin/brew shellenv)"
