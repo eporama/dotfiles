@@ -77,3 +77,7 @@ function ytp {
   curl -Ls "$1" | htmlq -t title
 }
 
+# Brew update and phpenv update
+function bup {
+  brew update && brew upgrade --greedy && phpenv_update
+}
