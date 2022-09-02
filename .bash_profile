@@ -15,9 +15,13 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 export COMPOSER_MEMORY_LIMIT=-1
 export HOMEBREW_NO_ENV_HINTS=1
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+if [ -d /opt/homebrew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+else
+  eval "$(/usr/local/bin/brew shellenv)"
+  [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+fi
 
 eval "$(phpenv init -)"
 
