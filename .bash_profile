@@ -23,7 +23,9 @@ else
   [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 fi
 
-eval "$(phpenv init -)"
+if [ -x $HOME/.phpenv/libexec/phpenv ]; then
+  eval "$(phpenv init -)"
+fi
 
 # include AH profile
 if [ -f ~/.ah_profile ]; then
