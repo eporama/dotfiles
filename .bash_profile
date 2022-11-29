@@ -85,3 +85,13 @@ function ytp {
 function bup {
   brew update && brew upgrade --greedy && phpenv_update
 }
+
+# Open URL from Brew info
+function bopen {
+  open $(brew info $1 --json | jq -r ".[].homepage")
+}
+
+# PHP 8.1 wrapper for acli
+function acli {
+  $HOME/.phpenv/versions/8.1/bin/php /usr/local/bin/acli.phar "$@"
+}
