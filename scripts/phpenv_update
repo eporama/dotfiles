@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+echo -e "Removing old phpenv versions"
+find "${HOME}/.phpenv/versions" -maxdepth 1 -mindepth 1 -type l -delete
+
+echo -e "\nAdding new phpenv versions"
+for version in $(find $(find $(brew --prefix)/Cellar -maxdepth 1 -mindepth 1 -name 'php@[0-9].[0-9]' -o -name 'php' ) -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
+  echo -e "  Adding symlinks for ${version}"
+  ln -s ${version} ${HOME}/.phpenv/versions/$(echo "${version}" | perl -p -e "s/.*(\d+\.\d+)\.(.+)$/\1/") 2>/dev/null
+done
+
+echo -e "\nRehashing phpenv"
+phpenv rehash
