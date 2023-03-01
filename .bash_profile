@@ -85,7 +85,7 @@ function ytp {
 
 # Brew update and phpenv update
 function bup {
-  brew update && brew upgrade --greedy && phpenv_update
+  brew update && brew upgrade --greedy; phpenv_update
 }
 
 # Open URL from Brew info
