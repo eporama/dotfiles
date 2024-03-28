@@ -6,8 +6,8 @@
     <string>ssh-add-a</string>
     <key>ProgramArguments</key>
     <array>
-        <string>ssh-add</string>
-        <string>-A</string>
+        <string>/usr/bin/ssh-add</string>
+        <string>--apple-load-keychain</string>
     </array>
     <key>RunAtLoad</key>
     <true/>

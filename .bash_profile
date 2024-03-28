@@ -7,6 +7,8 @@ export PATH=/opt/homebrew/opt/openssl@3/bin:$PATH
 export PATH="$HOME/.phpenv/bin:vendor/bin:../vendor/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
 export PATH="$HOME/.symfony/bin:$PATH"
+export PATH="/Applications/PhpStorm.app/Contents/MacOS:$PATH"
+export PATH="$HOME/.drutiny/bin:$PATH"
 
 export HOMEBREW_EDITOR="/usr/local/bin/atom"
 export EDITOR="/usr/bin/vi"
@@ -14,6 +16,8 @@ export LS_COLORS="no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:ex
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export COMPOSER_MEMORY_LIMIT=-1
 export HOMEBREW_NO_ENV_HINTS=1
+export AHT_BASTION_USER=erikpeterson
+export AHT_BASTION=bastion-21
 
 if [ -d /opt/homebrew ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -35,6 +39,7 @@ fi
 alias GET='curl -XGET -s -D - -o /dev/null'
 alias tbl='column -s $'\''\t'\'' -t'
 alias please='sudo'
+alias assh-add='/usr/bin/ssh-add --apple-load-keychain'
 
 function _update_ps1() {
     PS1=$(powerline-shell $?)
@@ -57,7 +62,7 @@ function livegit() {
 }
 
 function sslcheck() {
-  echo "" | openssl s_client -connect $@:443 -servername $@ 2> /dev/null |  openssl x509 -noout  -dates -ext subjectAltName | egrep "DNS|not[Before|After]" | sed -e 's/^[[:space:]]*//'
+  echo "" | openssl s_client -connect $@:443 -servername $@ 2> /dev/null |  openssl x509 -noout  -dates -ext subjectAltName 2> /dev/null | egrep "DNS|not[Before|After]" | sed -e 's/^[[:space:]]*//'
 }
 
 function notify() {
@@ -74,7 +79,7 @@ function sd {
   killall Finder
 }
 
-function db-import { 
+function db-import {
   size=$(gzip -l $1 | awk 'NR==2 { print $2 }') && gzip -d -c $1 | pv -s $size | mysql -u root $2 ;
 }
 
@@ -94,6 +99,6 @@ function bopen {
 }
 
 # PHP 8.1 wrapper for acli
-function acli {
-  $HOME/.phpenv/versions/8.1/bin/php /usr/local/bin/acli.phar "$@"
-}
+# function acli {
+  # $HOME/.phpenv/versions/8.2/bin/php /usr/local/bin/acli "$@"
+# }
