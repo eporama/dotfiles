@@ -36,7 +36,7 @@ if [ -f ~/.ah_profile ]; then
   . ~/.ah_profile
 fi
 
-alias GET='curl -XGET -s -D - -o /dev/null'
+alias GET='curl -sS -D - -o /dev/null'
 alias tbl='column -s $'\''\t'\'' -t'
 alias please='sudo'
 alias assh-add='/usr/bin/ssh-add --apple-load-keychain'
@@ -102,3 +102,4 @@ function bopen {
 # function acli {
   # $HOME/.phpenv/versions/8.2/bin/php /usr/local/bin/acli "$@"
 # }
+
