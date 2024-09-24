@@ -3,6 +3,7 @@ if [ -x /usr/libexec/path_helper ]; then
   eval $(/usr/libexec/path_helper -s)
 fi
 
+export PATH=/Users/erik/Library/Python/3.9/bin:$PATH
 export PATH=/opt/homebrew/opt/openssl@3/bin:$PATH
 export PATH="$HOME/.phpenv/bin:vendor/bin:../vendor/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
@@ -42,10 +43,10 @@ alias please='sudo'
 alias assh-add='/usr/bin/ssh-add --apple-load-keychain'
 
 function _update_ps1() {
-    PS1=$(powerline-shell $?)
+   PS1=$(powerline-shell $?)
 }
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+   PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
 function wtree() {
@@ -90,7 +91,10 @@ function ytp {
 
 # Brew update and phpenv update
 function bup {
-  brew update && brew upgrade --greedy; phpenv_update
+  brew update && brew upgrade --greedy; 
+  if declare -f "my_function" > /dev/null; then 
+    phpenv_update
+  fi
 }
 
 # Open URL from Brew info
