@@ -107,3 +107,4 @@ function bopen {
   # $HOME/.phpenv/versions/8.2/bin/php /usr/local/bin/acli "$@"
 # }
 
+export TELEPORT_ADD_KEYS_TO_AGENT=no
