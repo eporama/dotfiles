@@ -92,7 +92,7 @@ function ytp {
 # Brew update and phpenv update
 function bup {
   brew update && brew upgrade --greedy; 
-  if declare -f "my_function" > /dev/null; then 
+  if [ -f $HOME/.phpenv/version ]; then 
     phpenv_update
   fi
 }
