@@ -92,7 +92,7 @@ function ytp {
 # Brew update and phpenv update
 function bup {
   brew update && brew upgrade --greedy; 
-  if [ -f $HOME/.phpenv/version ]; then 
+  if (which -s phpenv_update); then 
     phpenv_update
   fi
 }
@@ -101,10 +101,5 @@ function bup {
 function bopen {
   open $(brew info $1 --json | jq -r ".[].homepage")
 }
-
-# PHP 8.1 wrapper for acli
-# function acli {
-  # $HOME/.phpenv/versions/8.2/bin/php /usr/local/bin/acli "$@"
-# }
 
 export TELEPORT_ADD_KEYS_TO_AGENT=no
