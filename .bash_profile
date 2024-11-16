@@ -10,6 +10,7 @@ export PATH="$HOME/.composer/vendor/bin:/usr/local/sbin:$PATH"
 export PATH="$HOME/.symfony/bin:$PATH"
 export PATH="/Applications/PhpStorm.app/Contents/MacOS:$PATH"
 export PATH="$HOME/.drutiny/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 export HOMEBREW_EDITOR="/usr/local/bin/atom"
 export EDITOR="/usr/bin/vi"
